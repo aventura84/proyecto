@@ -1,65 +1,97 @@
-*{
-    margin: o;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-body{
-    background: url(fondo.jpg);
-    -webkit-background-size: cover;
-    background-size: cover;
-    background-attachment: fixed;
+body {
+  background: rgb(85, 144, 189);
+  background: linear-gradient(
+    90deg,
+    rgba(85, 144, 189, 1) 0%,
+    rgba(108, 183, 240, 1) 54%,
+    rgba(182, 216, 242, 1) 82%
+  );
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
-.contenedor .formu .header .title {
-    font-weight: normal;
-    font-family: sans-serif;
-    color: white;
-    text-align: center;
-    padding: 14px 0;
+h1 {
+  color: white;
 }
-.contenedor .formu .header .title span{
-    color:orange;
+
+.pokemon-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
-.contenedor .formu{
-    background: rgba(0,0,0,.6);
-    width: 90%;
-    max-width: 650px;
-    margin: auto;
-    padding: 5px 35px;
-    margin-top: 30px;
-    border-radius: 3px;
+
+.pokemon-block,
+.pokemon-block-back {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
 }
-.contenedor .formu .form {
-    display: block;
-    color: orange;
-    font-family: roboto;
-    position: relative;
+
+.img-container {
+  background-image: url("./blob.svg");
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.contenedor .formu .input {
-    background: rgba(0,0,0,.7);
-    border: none;
-    outline: none;
-    border-bottom: 2px solid #ff851b ;
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
-    border-radius: 2px;
-    font-size: 14px;
-    color: #fff;
+
+.pokemon-block p {
+  margin: 5px;
 }
-.contenedor .formu .submit {
-    width: 100%;
-    font-family: roboto;
-    background: #ff851b;
-    font-size: 16px;
-    border: none;
-    color: #fff;
-    padding: 10px 0;
-    cursor: pointer;
-    transition: all .5s ease;
+
+.name {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
-.contenedor .formu .submit:hover{
-    background: #f29718;
+
+#spinner {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.pagination {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+}
+
+.card-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .card-container {
+  transform: rotateY(180deg);
+}
+
+.pokemon-block,
+.pokemon-block-back {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.pokemon-block-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0%;
+}
+
+.stat-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: left;
 }

@@ -1,40 +1,38 @@
+// const input = document.querySelector("input");
+// const button = document.querySelector("button");
 const pokemonContainer = document.querySelector(".pokemon-container");
-const spinner = document.querySelector("#spinner");
-const previous = document.querySelector("#previous");
-const next = document.querySelector("#next");
 
-//let limit = 8;
-//let offset = 1;
-
-// previous.addEventListener("click", () => {
-//   if (offset != 1) {
-//     offset -= 9;
-//     removeChildNodes(pokemonContainer);
-//     fetchPokemons(offset, limit);
-//   }
+// button.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   filterPokemon(input.value);
 // });
-
-// next.addEventListener("click", () => {
-//   offset += 9;
-//   removeChildNodes(pokemonContainer);
-//   fetchPokemons(offset, limit);
-// });
-
-function fetchPokemon(id) {
-  fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+// function filterPokemon(pokemon) {
+//   fetch("https://pokeapi.co/api/v2/pokemon/1/")
+//     .then((res) => res.json())
+//     .then((data) => {
+//       createPokemon(data);
+//     });
+// }
+// function getPokemon() {
+//   fetch("https://pokeapi.co/api/v2/pokemon?limit=1126");
+// }
+// function createPokemon(pokemon) {
+//   const img = document.createElement("img");
+//   img.src = pokemon.sprites.front_default;
+//   const h3 = document.createElement("h3");
+//   h3.textContent = pokemon.name;
+//   const div = document.createElement("div");
+//   div.appendChild(img);
+//   div.appendChild(h3);
+//   pokemonContainer.appendChild(div);
+// }
+function filterPokemon(pokemon) {
+  fetch("https://pokeapi.co/api/v2/pokemon/1/")
     .then((res) => res.json())
     .then((data) => {
       createPokemon(data);
-      spinner.style.display = "none";
     });
 }
-
-//function fetchPokemons(offset, limit) {
-//  spinner.style.display = "block";
-// for (let i = offset; i <= offset + limit; i++) {
-// fetchPokemon(1);
-// }
-//}
 
 function createPokemon(pokemon) {
   const flipCard = document.createElement("div");
@@ -74,7 +72,7 @@ function createPokemon(pokemon) {
 
   cardContainer.appendChild(card);
   cardContainer.appendChild(cardBack);
-  pokemonContainer.appendChild(flipCard);
+  //pokemonContainer.appendChild(flipCard);
 }
 
 function progressBars(stats) {
@@ -112,11 +110,4 @@ function progressBars(stats) {
 
   return statsContainer;
 }
-
-function removeChildNodes(parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
-  }
-}
-
-fetchPokemon(1);
+filterPokemon();
