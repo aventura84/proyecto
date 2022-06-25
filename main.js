@@ -1,10 +1,6 @@
-//const spinner = document.querySelector("#spinner");
-//const previous = document.querySelector("#previous");
-//const next = document.querySelector("#next");
 const buscar = document.querySelector("#value");
 //let limit = 8;
 //let offset = 1;
-
 // previous.addEventListener("click", () => {
 //   if (offset != 1) {
 //     offset -= 9;
@@ -12,13 +8,11 @@ const buscar = document.querySelector("#value");
 //     fetchPokemons(offset, limit);
 //   }
 // });
-
 // next.addEventListener("click", () => {
 //   offset += 9;
 //   removeChildNodes(pokemonContainer);
 //   fetchPokemons(offset, limit);
 // });
-
 function fetchPokemon(url) {
   fetch(`${url}`)
     .then((res) => res.json())
@@ -32,15 +26,44 @@ function fetchPokemons() {
     .then((data) => {
       fetchPokemon(data.results.url);
     });
+  let arr = ["ivisaur", "bulbasaur", "grapes", "mango", "orange"];
+  var query = "saur";
+  filterItems(arr, query);
+  console.log;
 }
 
-// function fetchPokemons(offset, limit) {
+/**
+ * Filter array items based on search criteria (query)
+ */
+function filterItems(arr, query) {
+  return arr.filter(function (el) {
+    return el.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+  });
+}
 
+console.log(filterItems(fruits, "saur")); // ['apple', 'grapes']
+console.log(filterItems(fruits, "an")); // ['banana', 'mango', 'orange']
+
+function fetchPokemonsc() {
+  fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`).then((res) =>
+    res.json()
+  );
+  // .then((data) => console.log(data));
+
+  var query = "saur";
+  filterItems(query);
+  const words = ["ivisaur", "bulbasaur"];
+
+  const result = words.filter((word) => word.length > 1);
+
+  console.log(result);
+}
+fetchPokemonsc();
+// function fetchPokemons(offset, limit) {
 //   for (let i = offset; i <= offset + limit; i++) {
 //     fetchPokemon(1);
 //   }
 // }
-
 function createPokemon(pokemon) {
   const flipCard = document.createElement("div");
   flipCard.classList.add("flip-card");
@@ -114,14 +137,10 @@ function progressBars(stats) {
 
     statsContainer.appendChild(statContainer);
   }
-
   return statsContainer;
 }
-
 function removeChildNodes(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
 }
-
-fetchPokemons();
