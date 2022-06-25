@@ -1,8 +1,7 @@
-const pokemonContainer = document.querySelector(".pokemon-container");
-const spinner = document.querySelector("#spinner");
-const previous = document.querySelector("#previous");
-const next = document.querySelector("#next");
-
+//const spinner = document.querySelector("#spinner");
+//const previous = document.querySelector("#previous");
+//const next = document.querySelector("#next");
+const buscar = document.querySelector("#value");
 //let limit = 8;
 //let offset = 1;
 
@@ -20,28 +19,34 @@ const next = document.querySelector("#next");
 //   fetchPokemons(offset, limit);
 // });
 
-function fetchPokemon(id) {
-  fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+function fetchPokemon(url) {
+  fetch(`${url}`)
     .then((res) => res.json())
     .then((data) => {
       createPokemon(data);
-      spinner.style.display = "none";
+    });
+}
+function fetchPokemons() {
+  fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`)
+    .then((res) => res.json())
+    .then((data) => {
+      fetchPokemon(data.results.url);
     });
 }
 
-//function fetchPokemons(offset, limit) {
-//  spinner.style.display = "block";
-// for (let i = offset; i <= offset + limit; i++) {
-// fetchPokemon(1);
+// function fetchPokemons(offset, limit) {
+
+//   for (let i = offset; i <= offset + limit; i++) {
+//     fetchPokemon(1);
+//   }
 // }
-//}
 
 function createPokemon(pokemon) {
   const flipCard = document.createElement("div");
   flipCard.classList.add("flip-card");
 
   const cardContainer = document.createElement("div");
-  cardContainer.classList.add("card-container");
+  //cardContainer.classList.add("card-container");
 
   flipCard.appendChild(cardContainer);
 
@@ -119,4 +124,4 @@ function removeChildNodes(parent) {
   }
 }
 
-fetchPokemon(1);
+fetchPokemons();
