@@ -24,7 +24,7 @@ function fetchPokemons() {
   fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`)
     .then((res) => res.json())
     .then((data) => {
-      fetchPokemon(data.results.url);
+      fetchPokemon(data.results.url[0]);
     });
   let arr = ["ivisaur", "bulbasaur", "grapes", "mango", "orange"];
   var query = "saur";
