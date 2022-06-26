@@ -1,4 +1,7 @@
 const buscar = document.querySelector("#value");
+const patron = document.querySelector("#value");
+
+documento.getElementById(id_name);
 //let limit = 8;
 //let offset = 1;
 // previous.addEventListener("click", () => {
@@ -24,7 +27,7 @@ function fetchPokemons() {
   fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`)
     .then((res) => res.json())
     .then((data) => {
-      fetchPokemon(data.results.url);
+      fetchPokemon(data.results[0].url);
     });
   let arr = ["ivisaur", "bulbasaur", "grapes", "mango", "orange"];
   var query = "saur";
@@ -35,29 +38,21 @@ function fetchPokemons() {
 /**
  * Filter array items based on search criteria (query)
  */
-var pokemons = ["ivisaur", "bulbasaur", "grapes", "mango", "orange"];
+//var pokemons = ["ivisaur", "bulbasaur", "grapes", "mango", "orange"];
 function filterItems(arr, query) {
   return arr.filter(function (el) {
-    return el.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    return el.toString().toLowerCase().indexOf(query.toLowerCase()) !== -1;
   });
 }
-
-console.log(filterItems(pokemons, "saur")); // ['apple', 'grapes']
-console.log(filterItems(pokemons, "an")); // ['banana', 'mango', 'orange']
+//console.log(filterItems(pokemons, "saur")); // ['apple', 'grapes']
 
 function fetchPokemonsc() {
-  fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`).then((res) =>
-    res.json()
-  );
-  // .then((data) => console.log(data));
-
-  var query = "saur";
-  filterItems(query);
-  const words = ["ivisaur", "bulbasaur"];
-
-  const result = words.filter((word) => word.length > 1);
-
-  console.log(result);
+  fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`)
+    .then((res) => res.json())
+    .then((data) => {
+      filterItems(data.results, "saur");
+      fetchPokemon(data.results[0].url);
+    });
 }
 fetchPokemonsc();
 // function fetchPokemons(offset, limit) {
