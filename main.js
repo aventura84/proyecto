@@ -24,7 +24,7 @@ function fetchPokemons() {
   fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`)
     .then((res) => res.json())
     .then((data) => {
-      fetchPokemon(data.results.url[0]);
+      fetchPokemon(data.results.url);
     });
   let arr = ["ivisaur", "bulbasaur", "grapes", "mango", "orange"];
   var query = "saur";
@@ -35,14 +35,15 @@ function fetchPokemons() {
 /**
  * Filter array items based on search criteria (query)
  */
+var pokemons = ["ivisaur", "bulbasaur", "grapes", "mango", "orange"];
 function filterItems(arr, query) {
   return arr.filter(function (el) {
     return el.toLowerCase().indexOf(query.toLowerCase()) !== -1;
   });
 }
 
-console.log(filterItems(fruits, "saur")); // ['apple', 'grapes']
-console.log(filterItems(fruits, "an")); // ['banana', 'mango', 'orange']
+console.log(filterItems(pokemons, "saur")); // ['apple', 'grapes']
+console.log(filterItems(pokemons, "an")); // ['banana', 'mango', 'orange']
 
 function fetchPokemonsc() {
   fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`).then((res) =>
