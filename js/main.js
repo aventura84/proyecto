@@ -48,7 +48,10 @@ async function render(pokemonsToPrint) {
     const detallePokemon = await fetchPokemon(pokemon.url);
     const pokemonLi = document.createElement("li");
     const pokemonImg = document.createElement("img");
-    pokemonImg.setAttribute("src", "https://pokeapi.co/api/v2/pokemon/1/");
+    pokemonImg.setAttribute(
+      "src",
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png"
+    );
     const pokemonName = document.createElement("p");
     pokemonName.textContent = pokemon.name;
     pokemonLi.append(pokemonImg);
