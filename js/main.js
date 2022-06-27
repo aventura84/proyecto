@@ -85,13 +85,13 @@ function create(pokemon) {
   attack.classList.add("attack");
   attack.textContent = pokemon.attack;
 
-  const defense = document.createElement("defense");
-  defense.classList.add("defense");
-  defense.textContent = pokemon.defense;
+  const defense = document.createElement("defense-curl");
+  defense.classList.add("defense-curl");
+  defense.textContent = pokemon.defense - curl;
 
-  const type = document.createElement("type");
-  type.classList.add("type");
-  type.textContent = pokemon.type;
+  const type = document.createElement("past_types");
+  type.classList.add("past_types");
+  type.textContent = pokemon.past_types;
 
   card.appendChild(spriteContainer);
   card.appendChild(name);
