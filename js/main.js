@@ -1,7 +1,12 @@
-const buscar = document.querySelector("#value");
-const patron = document.querySelector("#value");
+"use strict";
 
-documento.getElementById(id_name);
+let pokemons = [];
+
+const buscadorElement = document.forms.buscador;
+const nombreElement = buscador.elements.nombre;
+const listadoPokemonsUl = document.querySelector("#listadoPokemons");
+
+//documento.getElementById(id_name);
 //let limit = 8;
 //let offset = 1;
 // previous.addEventListener("click", () => {
@@ -16,50 +21,58 @@ documento.getElementById(id_name);
 //   removeChildNodes(pokemonContainer);
 //   fetchPokemons(offset, limit);
 // });
-function fetchPokemon(url) {
-  fetch(`${url}`)
-    .then((res) => res.json())
-    .then((data) => {
-      createPokemon(data);
-    });
-}
-function fetchPokemons() {
-  fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`)
-    .then((res) => res.json())
-    .then((data) => {
-      fetchPokemon(data.results[0].url);
-    });
-  let arr = ["ivisaur", "bulbasaur", "grapes", "mango", "orange"];
-  var query = "saur";
-  filterItems(arr, query);
-  console.log;
+
+const funcSubmit = (event) => {
+  event.preventDefault();
+  const inputUser = nombreElement.value;
+  const filteredPokemons = filterItems(inputUser);
+  //console.log("filteredPokemons", filteredPokemons);
+  render(filteredPokemons);
+};
+
+buscadorElement.addEventListener("submit", funcSubmit);
+
+async function fetchPokemons() {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`);
+  const data = await res.json();
+  return data.results;
 }
 
-/**
- * Filter array items based on search criteria (query)
- */
-//var pokemons = ["ivisaur", "bulbasaur", "grapes", "mango", "orange"];
-function filterItems(arr, query) {
-  return arr.filter(function (el) {
-    return el.toString().toLowerCase().indexOf(query.toLowerCase()) !== -1;
+async function fetchPokemon(url) {
+  const res = await fetch(url);
+  const data = await res.json();
+  return data;
+}
+
+async function main() {
+  pokemons = await fetchPokemons();
+  //console.log(pokemons);
+}
+
+main();
+
+function filterItems(query) {
+  return pokemons.filter((pokemon) => {
+    return pokemon.name.startsWith(query);
   });
 }
-//console.log(filterItems(pokemons, "saur")); // ['apple', 'grapes']
 
-function fetchPokemonsc() {
-  fetch(`https://pokeapi.co/api/v2/pokemon?limit=1126`)
-    .then((res) => res.json())
-    .then((data) => {
-      filterItems(data.results, "saur");
-      fetchPokemon(data.results[0].url);
-    });
+async function render(pokemonsToPrint) {
+  const fragmentPokemon = document.createDocumentFragment();
+  for (const pokemon of pokemonsToPrint) {
+    const detallePokemon = await fetchPokemon(pokemon.url);
+    const pokemonLi = document.createElement("li");
+    const pokemonImg = document.createElement("img");
+    pokemonImg.setAttribute("src", "https://"); // detallePokemon
+    const pokemonName = document.createElement("p");
+    pokemonName.textContent = pokemon.name;
+    pokemonLi.append(pokemonImg);
+    pokemonLi.append(pokemonName);
+    fragmentPokemon.append(pokemonLi);
+  }
+  listadoPokemonsUl.append(fragmentPokemon);
 }
-fetchPokemonsc();
-// function fetchPokemons(offset, limit) {
-//   for (let i = offset; i <= offset + limit; i++) {
-//     fetchPokemon(1);
-//   }
-// }
+
 function createPokemon(pokemon) {
   const flipCard = document.createElement("div");
   flipCard.classList.add("flip-card");
