@@ -67,7 +67,7 @@ function create(pokemon) {
 
   const sprite = document.createElement("img");
   sprite.src = pokemon.sprites.front;
-
+  sprite.src = pokemon.sprites.back;
   spriteContainer.appendChild(sprite);
 
   const name = document.createElement("p");
