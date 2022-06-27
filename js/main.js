@@ -48,10 +48,7 @@ async function render(pokemonsToPrint) {
     const detallePokemon = await fetchPokemon(pokemon.url);
     const pokemonLi = document.createElement("li");
     const pokemonImg = document.createElement("img");
-    pokemonImg.setAttribute(
-      "src",
-      "https://pokeapi.co/api/v2/pokemon/${Name}/"
-    );
+    pokemonImg.setAttribute("src", "https://pokeapi.co/api/v2/pokemon/1/");
     const pokemonName = document.createElement("p");
     pokemonName.textContent = pokemon.name;
     pokemonLi.append(pokemonImg);
@@ -73,15 +70,11 @@ function create(pokemon) {
 
   spriteContainer.appendChild(sprite);
 
-  const number = document.createElement("p");
-  number.textContent = "#${pokemon.id.toString().padStart(3,0)}";
-
   const name = document.createElement("p");
   name.classList.add("name");
   name.textContent = pokemon.name;
 
   card.appendChild(spriteContainer);
-  card.appendChild(number);
   card.appendChild(name);
 
   pokemonContainer.appendChild(card);
