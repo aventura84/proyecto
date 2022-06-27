@@ -66,7 +66,7 @@ function create(pokemon) {
   spriteContainer.classList.add("img-container");
 
   const sprite = document.createElement("img");
-  sprite.src = pokemon.sprites.front_default;
+  sprite.src = pokemon.sprites.front;
 
   spriteContainer.appendChild(sprite);
 
@@ -74,8 +74,26 @@ function create(pokemon) {
   name.classList.add("name");
   name.textContent = pokemon.name;
 
+  const high = document.createElement("high");
+  high.classList.add("high");
+  high.textContent = pokemon.high;
+
+  const attack = document.createElement("attack");
+  attack.classList.add("attack");
+  attack.textContent = pokemon.attack;
+
+  const defense = document.createElement("defense");
+  defense.classList.add("defense");
+  defense.textContent = pokemon.defense;
+
+  const type = document.createElement("type");
+  type.classList.add("type");
+  type.textContent = pokemon.type;
+
   card.appendChild(spriteContainer);
   card.appendChild(name);
-
+  card.appendChild(attack);
+  card.appendChild(defense);
+  card.appendChild(type);
   pokemonContainer.appendChild(card);
 }
